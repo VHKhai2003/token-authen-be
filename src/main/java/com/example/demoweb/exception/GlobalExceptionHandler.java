@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ErrorMessage handleException(Exception exception, WebRequest request) {
         // handle other exception and send error to client
-        log.error(exception.getMessage());
+        exception.printStackTrace();
         ErrorMessage.Payload payload = ErrorMessage.Payload.builder()
                 .timestamp(new Date())
                 .status(500)

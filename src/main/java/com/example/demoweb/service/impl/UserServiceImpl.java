@@ -56,4 +56,17 @@ public class UserServiceImpl implements UserService {
                 .createdAt(addedUser.getCreatedAt())
                 .build();
     }
+
+    @Override
+    public UserResponseDto getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new CustomException(404, "User not found"));
+        return UserResponseDto.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .username(user.getUsername())
+                .createdAt(user.getCreatedAt())
+                .build();
+    }
+
+
 }
